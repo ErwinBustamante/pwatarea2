@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Tareas</title>
+<style>
+    ul {
+        list-style-type: none;
+    }
+
+    li {
+        margin: 5px 0;
+    }
+
+    .delete-btn {
+        margin-left: 10px;
+        color: red;
+        cursor: pointer;
+    }
+</style>
+<script>
+function agregarTarea() {
+    var tarea = document.getElementById('nuevaTarea').value;
+    if (tarea.trim() === '') {
+        alert('Por favor, escribe una tarea.');
+        return;
+    }
+    var li = document.createElement('li');
+    li.textContent = tarea;
+    var deleteBtn = document.createElement('span');
+    deleteBtn.textContent = 'Eliminar';
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.onclick = function() {
+        this.parentElement.remove();
+    };
+    li.appendChild(deleteBtn);
+    document.getElementById('listaTareas').appendChild(li);
+    document.getElementById('nuevaTarea').value = '';
+}
+
+function eliminarTarea(element) {
+    var li = element.parentElement;
+    document.getElementById('listaTareas').removeChild(li);
+}
+</script>
+</head>
+<body>
+
+<h2>Lista de Tareas</h2>
+
+<input type="text" id="nuevaTarea" placeholder="Agregar nueva tarea...">
+<button onclick="agregarTarea()">Agregar</button>
+
+<ul id="listaTareas">
+</ul>
+
+</body>
+</html>

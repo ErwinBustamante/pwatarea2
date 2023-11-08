@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Reloj Analógico</title>
+<style>
+  #clock {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background: url('manecilla.jpg') no-repeat; /* Ruta a la imagen de la esfera del reloj */
+    background-size: cover;
+  }
+
+  .hand {
+    position: absolute;
+    width: 50%; /* Ajustar según la imagen */
+    height: 50%; /* Ajustar según la imagen */
+    top: 50%;
+    left: 50%;
+    transform-origin: 50% 100%;
+  }
+
+  #hour-hand {
+    background: url('manecilla.jpg') no-repeat; /* Ruta a la imagen de la manecilla de las horas */
+  }
+
+  #minute-hand {
+    background: url('manecilla.jpg') no-repeat; /* Ruta a la imagen de la manecilla de los minutos */
+  }
+
+  #second-hand {
+    background: url('manecilla.jpg') no-repeat; /* Ruta a la imagen de la manecilla de los segundos */
+  }
+</style>
+</head>
+<body>
+
+<div id="clock">
+  <div id="hour-hand" class="hand"></div>
+  <div id="minute-hand" class="hand"></div>
+  <div id="second-hand" class="hand"></div>
+</div>
+
+<script>
+function updateClock() {
+  var now = new Date();
+  var second = now.getSeconds();
+  var minute = now.getMinutes();
+  var hour = now.getHours();
+
+  var secondAngle = second * 6; // 360 grados / 60 segundos
+  var minuteAngle = minute * 6 + second * 0.1; // 360 grados / 60 minutos + corrección por segundos
+  var hourAngle = hour * 30 + minute * 0.5; // 360 grados / 12 horas + corrección por minutos
+
+  document.getElementById('second-hand').style.transform = 'rotate(' + secondAngle + 'deg)';
+  document.getElementById('minute-hand').style.transform = 'rotate(' + minuteAngle + 'deg)';
+  document.getElementById('hour-hand').style.transform = 'rotate(' + hourAngle + 'deg)';
+}
+
+setInterval(updateClock, 1000);
+updateClock(); // Actualizar inmediatamente al cargar la página
+</script>
+
+</body>
+</html>

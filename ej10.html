@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Juego de Preguntas y Respuestas</title>
+</head>
+<body>
+  <h1>Juego de Preguntas y Respuestas</h1>
+  <div id="pregunta-container">
+    <p id="pregunta"></p>
+    <ul id="opciones">
+      <li><button onclick="comprobarRespuesta(this)">Respuesta 1</button></li>
+      <li><button onclick="comprobarRespuesta(this)">Respuesta 2</button></li>
+      <li><button onclick="comprobarRespuesta(this)">Respuesta 3</button></li>
+      <li><button onclick="comprobarRespuesta(this)">Respuesta 4</button></li>
+    </ul>
+  </div>
+  <div id="resultado"></div>
+
+  <script>
+    const preguntas = [
+      {
+        pregunta: "¿Cuál es la capital de Francia?",
+        opciones: ["Madrid", "Londres", "París", "Berlín"],
+        respuestaCorrecta: "París",
+      },
+      {
+        pregunta: "¿Cuál es el planeta más grande del sistema solar?",
+        opciones: ["Marte", "Venus", "Júpiter", "Saturno"],
+        respuestaCorrecta: "Júpiter",
+      },
+      {
+        pregunta: "¿En qué año se fundó Google?",
+        opciones: ["1995", "2000", "1998", "2005"],
+        respuestaCorrecta: "1998",
+      },
+    ];
+
+    let preguntaActual = 0;
+    let puntuacion = 0;
+
+    function mostrarPregunta() {
+      if (preguntaActual < preguntas.length) {
+        const pregunta = preguntas[preguntaActual];
+        document.getElementById("pregunta").textContent = pregunta.pregunta;
+
+        const opciones = document.getElementById("opciones").getElementsByTagName("button");
+        for (let i = 0; i < opciones.length; i++) {
+          opciones[i].textContent = pregunta.opciones[i];
+        }
+      } else {
+        mostrarPuntuacion();
+      }
+    }
+
+    function comprobarRespuesta(btn) {
+      const respuestaSeleccionada = btn.textContent;
+      const respuestaCorrecta = preguntas[preguntaActual].respuestaCorrecta;
+
+      if (respuestaSeleccionada === respuestaCorrecta) {
+        puntuacion++;
+      }
+
+      preguntaActual++;
+      mostrarPregunta();
+    }
+
+    function mostrarPuntuacion() {
+      const resultado = document.getElementById("resultado");
+      resultado.textContent = `Puntuación final: ${puntuacion} de ${preguntas.length}`;
+    }
+
+    mostrarPregunta();
+  </script>
+</body>
+</html>

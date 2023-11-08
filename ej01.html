@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cambio de Color Aleatorio al Clic</title>
+<style>
+  #botonCambio {
+    padding: 10px 20px;
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  #elementoCambio {
+    width: 200px;
+    height: 200px;
+    background-color: #ddd; 
+    margin: 10px;
+    transition: background-color 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
+</style>
+</head>
+<body>
+
+<button id="botonCambio" onclick="cambiarColor()">Clic para Cambiar Color</button>
+<div id="elementoCambio">Elemento a Cambiar</div>
+
+<script>
+function cambiarColor() {
+ 
+  var rojo = Math.floor(Math.random() * 256);
+  var verde = Math.floor(Math.random() * 256);
+  var azul = Math.floor(Math.random() * 256);
+  
+  
+  var colorAleatorio = "rgb(" + rojo + ", " + verde + ", " + azul + ")";
+
+ 
+  document.getElementById("elementoCambio").style.backgroundColor = colorAleatorio;
+}
+</script>
+
+</body>
+</html>
+

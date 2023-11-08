@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menú de Navegación Horizontal Desplegable</title>
+<style>
+    /* Estilos básicos para el menú principal */
+    .menu-principal {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    /* Estilos para los elementos del menú principal */
+    .menu-principal > li {
+        float: left;
+    }
+
+    /* Estilos para los enlaces dentro del menú principal */
+    .menu-principal > li > a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    /* Cambio de color al pasar el mouse por encima */
+    .menu-principal > li > a:hover {
+        background-color: #111;
+    }
+
+    /* Estilos para los submenús */
+    .submenu {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    /* Estilos para los elementos de los submenús */
+    .submenu li {
+        float: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    /* Estilos para los enlaces de los submenús */
+    .submenu li a {
+        display: block;
+        text-align: left;
+        padding: 12px 16px;
+        text-decoration: none;
+        color: black;
+    }
+
+    /* Cambio de color al pasar el mouse por encima */
+    .submenu li a:hover {
+        background-color: #ddd;
+    }
+</style>
+<script>
+function toggleSubmenu(event, submenuId) {
+    // Prevenga la propagación del clic para evitar que window.onclick cierre el menú inmediatamente
+    event.stopPropagation();
+
+    var submenu = document.getElementById(submenuId);
+    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+}
+
+// Cerrar los submenús si se hace clic fuera de ellos
+window.onclick = function() {
+    var submenus = document.getElementsByClassName("submenu");
+    for (var i = 0; i < submenus.length; i++) {
+        var openSubmenu = submenus[i];
+        if (openSubmenu.style.display === 'block') {
+            openSubmenu.style.display = 'none';
+        }
+    }
+}
+</script>
+</head>
+<body>
+
+<ul class="menu-principal">
+    <li><a href="#home" onclick="toggleSubmenu(event, 'submenu1')">Inicio</a>
+        <ul id="submenu1" class="submenu">
+            <li><a href="#home1">Subinicio 1</a></li>
+            <li><a href="#home2">Subinicio 2</a></li>
+        </ul>
+    </li>
+    <li><a href="#news" onclick="toggleSubmenu(event, 'submenu2')">Noticias</a>
+        <ul id="submenu2" class="submenu">
+            <li><a href="#news1">Subnoticias 1</a></li>
+            <li><a href="#news2">Subnoticias 2</a></li>
+        </ul>
+    </li>
+    <li><a href="#contact" onclick="toggleSubmenu(event, 'submenu3')">Contacto</a>
+        <ul id="submenu3" class="submenu">
+            <li><a href="#contact1">Subcontacto 1</a></li>
+            <li><a href="#contact2">Subcontacto 2</a></li>
+        </ul>
+    </li>
+</ul>
+
+</body>
+</html>
+

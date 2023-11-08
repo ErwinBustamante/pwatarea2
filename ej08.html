@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrusel de Imágenes</title>
+<style>
+    .carrusel {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+    }
+
+    .contenedor-imagenes {
+        display: flex;
+        width: 500%;
+        transition: transform 0.5s ease;
+    }
+
+    .imagen {
+        width: 20%;
+        transition: opacity 0.5s ease;
+        display: block;
+    }
+
+    .btn {
+        cursor: pointer;
+        padding: 10px;
+        margin: 5px;
+        background: #333;
+        color: white;
+        border: none;
+    }
+</style>
+</head>
+<body>
+
+<div class="carrusel" id="carrusel">
+    <div class="contenedor-imagenes" id="contenedor-imagenes">
+        <img src="Ube.jpg"class="imagen" alt="Imagen 1">
+        <img src="Ube.jpg" class="imagen" alt="Imagen 2">
+        <img src="Ube.jpg" class="imagen" alt="Imagen 3">
+        <!-- Agregar más imágenes según sea necesario -->
+    </div>
+</div>
+
+<button class="btn" onclick="mover(-1)">Anterior</button>
+<button class="btn" onclick="mover(1)">Siguiente</button>
+
+<script>
+    var indice = 0;
+    var imagenes = document.getElementsByClassName('imagen');
+    var tamanoCarrusel = imagenes.length;
+
+    function mover(direccion) {
+        indice = (indice + direccion + tamanoCarrusel) % tamanoCarrusel;
+        document.getElementById('contenedor-imagenes').style.transform = 'translateX(' + (-indice * 100 / tamanoCarrusel) + '%)';
+    }
+
+    // Iniciar el carrusel para cambiar automáticamente cada 3 segundos
+    setInterval(function() {
+        mover(1);
+    }, 3000);
+</script>
+
+</body>
+</html>

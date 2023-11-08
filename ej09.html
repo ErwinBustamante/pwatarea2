@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temporizador de Cuenta Regresiva</title>
+  <style>
+    #countdown {
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Temporizador de Cuenta Regresiva</h1>
+  <p>Tempo restante: <span id="countdown"></span></p>
+
+  <script>
+    function updateCountdown() {
+      const fechaDestino = new Date('2023-01-01 00:00:00').getTime();
+      const ahora = new Date().getTime();
+      const tiempoRestante = fechaDestino - ahora;
+
+      const dias = Math.floor(tiempoRestante / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((tiempoRestante % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((tiempoRestante % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((tiempoRestante % (1000 * 60)) / 1000);
+        
+      document.getElementById('countdown').innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+    }
+
+    // Actualiza el temporizador cada segundo
+    setInterval(updateCountdown, 1000);
+
+    // Llama a updateCountdown para que muestre el contador inmediatamente al cargar la página
+    updateCountdown();
+  </script>
+</body>
+</html>
+
+

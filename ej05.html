@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulario </title>
+<style>
+    .formulario-container {
+        border: 2px solid #000000; 
+        border-radius: 15px; 
+        padding: 20px; 
+        width: fit-content; 
+        margin: auto; 
+    }
+
+    input[type=text], input[type=email], input[type=password] {
+        border: 1px solid #ddd;
+        border-radius: 5px; 
+        margin-bottom: 10px; 
+        padding: 10px; 
+        width: calc(100% - 22px); 
+    }
+
+    input[type=submit] {
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 10px 20px; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer; 
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+</style>
+<script>
+function validarFormulario() {
+    var nombre = document.forms["miFormulario"]["nombre"].value;
+    var correo = document.forms["miFormulario"]["correo"].value;
+    var contrasena = document.forms["miFormulario"]["contrasena"].value;
+
+    if (nombre == "" || correo == "" || contrasena == "") {
+        alert("Todos los campos deben estar llenos.");
+        return false;
+    }
+
+    return true;
+}
+</script>
+</head>
+<body>
+
+<div class="formulario-container">
+    <form name="miFormulario" onsubmit="return validarFormulario()" method="post">
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre"><br>
+        
+        <label for="correo">Correo Electrónico:</label><br>
+        <input type="email" id="correo" name="correo"><br>
+        
+        <label for="contrasena">Contraseña:</label><br>
+        <input type="password" id="contrasena" name="contrasena"><br>
+        
+        <input type="submit" value="Enviar">
+    </form>
+</div>
+
+</body>
+</html>
+

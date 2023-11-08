@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora Simple</title>
+<style>
+  .calculadora {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 300px;
+    margin: auto;
+  }
+  #resultado {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  .boton, .boton-operador {
+    flex: 1 0 21%;
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .boton-operador {
+    flex: 1 0 46%;
+  }
+</style>
+</head>
+<body>
+
+<div class="calculadora">
+  <input type="text" id="resultado" disabled>
+  <button class="boton" onclick="ingresarNumero('1')">1</button>
+  <button class="boton" onclick="ingresarNumero('2')">2</button>
+  <button class="boton" onclick="ingresarNumero('3')">3</button>
+  <button class="boton" onclick="ingresarNumero('4')">4</button>
+  <button class="boton" onclick="ingresarNumero('5')">5</button>
+  <button class="boton" onclick="ingresarNumero('6')">6</button>
+  <button class="boton" onclick="ingresarNumero('7')">7</button>
+  <button class="boton" onclick="ingresarNumero('8')">8</button>
+  <button class="boton" onclick="ingresarNumero('9')">9</button>
+  <button class="boton" onclick="ingresarNumero('0')">0</button>
+  <button class="boton-operador" onclick="ingresarOperador('*')">*</button>
+  <button class="boton-operador" onclick="ingresarOperador('+')">+</button>
+  <button class="boton-operador" onclick="ingresarOperador('-')">-</button>
+  <button class="boton" onclick="calcular()">=</button>
+  <button class="boton-operador" onclick="ingresarOperador('/')">/</button>
+  <button class="boton-operador" onclick="limpiar()">C</button>
+</div>
+
+<script>
+var operacion = '';
+
+function ingresarNumero(numero) {
+  var resultado = document.getElementById('resultado');
+  resultado.value = resultado.value + numero;
+}
+
+function ingresarOperador(operador) {
+  var resultado = document.getElementById('resultado');
+  operacion += resultado.value + operador;
+  resultado.value = '';
+}
+
+function calcular() {
+  var resultado = document.getElementById('resultado');
+  operacion += resultado.value;
+  resultado.value = eval(operacion);
+  operacion = '';
+}
+
+function limpiar() {
+  document.getElementById('resultado').value = '';
+  operacion = '';
+}
+</script>
+
+</body>
+</html>
+
